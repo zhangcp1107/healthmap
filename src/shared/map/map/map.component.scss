@@ -1,0 +1,107 @@
+:host ::ng-deep {
+    .sh-map-wapper {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+    }
+    .sh-map-pop-msg {
+        width: 450px;
+        font-size: 16px;
+        max-width: 450px !important;
+        & > div {
+            opacity: 0.8;
+        }
+    }
+    .sh-mp-head {
+        width: 450px;
+        font-family: MuseoSlab-100;
+        font-weight: normal;
+        font-style: normal;
+        background: #4c769b;
+        background: rgba(0,60,113,0.7);
+        margin: -10px -10px 14px -10px;
+        padding: 10px;
+        color: #fff;
+        font-size: 1em;
+        line-height: 1.4em;
+    }
+    .sh-mp-body {
+        opacity: 1;
+        background-color: white;
+        .sh-mp-item {
+            .sh-mp-msg-a {
+                text-decoration: none;
+                border-bottom: 0;
+                color: #c52f3f;
+                transition: all 200ms ease-in;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .sh-pop-modal {
+        body { 
+            margin: 0; padding: 0; 
+        }
+        .ant-modal-body {
+            padding: 0;
+        }
+        .ant-modal-footer {
+            display: none;
+        }
+        .ant-modal-header {
+            background: #333;
+            margin: 0px;
+            color: #fff;
+            font-size: 1em;
+            line-height: 1.4em;
+            font-size: 1.2em;
+            line-height: 1.166666em;
+            padding: 14px 20px;
+            font-family: MuseoSlab-300;
+            font-weight: normal;
+            font-style: normal;
+            border-bottom: 1px solid #000;
+            .ant-modal-title {
+                margin-right: 20px;
+            }
+        }
+        .sh-pop-sub-title {
+            margin: 0px;
+            background: #000;
+            color: #fff;
+            font-size: 1em;
+            line-height: 1.4em;
+            font-size: 1.2em;
+            line-height: 1.166666em;
+            padding: 14px 20px;
+            font-family: MuseoSlab-300;
+            font-weight: normal;
+            font-style: normal;
+            border-bottom: 1px solid #000;
+            vertical-align: baseline;
+        }
+        .sh-pop-msg-item {
+            border-top: 1px solid #ddd;
+            background: #fff;
+            padding: 21px 0;
+            .sh-pop-msg-item-l {
+                display: inline-block;
+                width: 92px;
+                margin-left: 20px;
+                font-family: MuseoSans-500, sans-serif;
+                font-weight: normal;
+                font-style: normal;
+                color: #333;
+            }
+            .sh-pop-msg-item-r {
+                display: inline-block;
+                width: 520px;
+                vertical-align: top;
+            }
+        }
+    }
+}

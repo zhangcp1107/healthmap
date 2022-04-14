@@ -161,7 +161,11 @@ export class MapComponent implements AfterViewInit {
     // click on tree to view dbh in a popup
     map.on('click', ['trees-heat','trees-point'], (event: any) => {
       this.activeData.title = event.features[0].properties.place_name
-      this.activeData.dataList = event.features.map((f: any) => ({content: f.properties.content}))
+      this.activeData.html = event.features[0].properties.html
+      this.activeData.dataList = event.features.map((f: any) => ({
+        content: f.properties.content,
+        html: f.properties.html
+      }))
       this.activeData.event = event
       new mapboxgl.Popup({
         // closeButton: false,

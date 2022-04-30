@@ -36,17 +36,17 @@ export class MapComponent implements AfterViewInit {
       // center: [116.0259, 39.9010],
       center: [121.5, 31.3],
     });
-    map.addControl(new mapboxgl.NavigationControl());
+    // map.addControl(new mapboxgl.NavigationControl());
     map.addControl(new MapboxLanguage({
       defaultLanguage: 'zh-Hans'
     }));
     // 定位
-    map.addControl(new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true
-    }));
+    // map.addControl(new mapboxgl.GeolocateControl({
+    //   positionOptions: {
+    //     enableHighAccuracy: true
+    //   },
+    //   trackUserLocation: true
+    // }));
     // 数据
     map.on('load', () => {
       map.addSource('trees', {

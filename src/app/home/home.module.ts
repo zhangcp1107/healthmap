@@ -3,9 +3,8 @@ import { HomeComponent } from './home/home.component';
 import { MapModule } from 'src/shared/map/map.module';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/shared/shared.module';
-
-
-
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 @NgModule({
   declarations: [
     HomeComponent
@@ -13,6 +12,8 @@ import { SharedModule } from 'src/shared/shared.module';
   imports: [
     MapModule,
     SharedModule,
+    NzIconModule,
+    NzToolTipModule,
     RouterModule.forChild([{
       path: '',
       component: HomeComponent,

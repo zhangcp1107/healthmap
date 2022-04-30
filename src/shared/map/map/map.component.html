@@ -2,7 +2,7 @@
 <div #popupMsg>
     <div *ngIf="activeData.dataList.length">
         <div class="sh-mp-head">{{activeData.title}}</div>
-        <div class="sh-mp-body" [innerHTML]="activeData.html">
+        <div class="sh-mp-body" [innerHTML]="activeData.html" (click)="popModal=true">
             <!-- <p class="sh-mp-item" (click)="popModal=true" *ngFor="let data of activeData.dataList">
                 <span class="sh-mp-msg-s">10 四月 2022 - </span>
                 <span class="sh-mp-msg-a">{{data.content}}</span>

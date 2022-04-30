@@ -1,1 +1,65 @@
 <sh-map></sh-map>
+
+<i (click)="active='info'" [ngClass]="{active: active=='info'}"
+    class="sh-icon-top a" nz-icon nzType="key"
+    nzTheme="outline" nz-tooltip nzTooltipTitle="地图热度颜色说明"
+    nzTooltipPlacement="bottomRight"></i>
+<i (click)="active='setting'" [ngClass]="{active: active=='setting'}"
+    class="sh-icon-top b" nz-icon nzType="setting"
+    nzTheme="outline" nz-tooltip nzTooltipTitle="设置"
+    nzTooltipPlacement="bottom"></i>
+<i (click)="active='environment'" [ngClass]="{active: active=='environment'}"
+    class="sh-icon-top c" nz-icon
+    nzType="environment" nzTheme="outline" nz-tooltip nzTooltipTitle="附近的疫情"
+    nzTooltipPlacement="bottom"></i>
+
+<i (click)="active='add'" [ngClass]="{active: active=='add'}" class="sh-icon-top
+    add" nz-icon nzType="plus-circle" nzTheme="outline" nz-tooltip
+    nzTooltipTitle="添加报警"
+    nzTooltipPlacement="bottom"></i>
+
+<i (click)="active='chart'" [ngClass]="{active: active=='chart'}"
+    class="sh-icon-top chart" nz-icon nzType="line-chart"
+    nzTheme="outline" nz-tooltip nzTooltipTitle="时间序列"
+    nzTooltipPlacement="bottom"></i>
+<i (click)="active='list'" [ngClass]="{active: active=='list'}"
+    class="sh-icon-top list" nz-icon nzType="unordered-list"
+    nzTheme="outline" nz-tooltip nzTooltipTitle="列表视图"
+    nzTooltipPlacement="bottom"></i>
+
+<!-- <i nz-icon nzType="caret-down" nzTheme="outline"></i> -->
+<!-- <i nz-icon nzType="folder-open" nzTheme="outline"></i>
+<i nz-icon nzType="monitor" nzTheme="outline"></i>
+<i nz-icon nzType="info-circle" nzTheme="outline"></i>
+<i nz-icon nzType="arrow-right" nzTheme="outline"></i> -->
+
+<div *ngIf="active=='info'" class="sh-top-pop-msg">
+    <i nz-icon nzType="close-circle" nzTheme="outline"></i>
+    <div class="head">
+        疫情程度：<i nz-icon nzType="info-circle" nzTheme="outline"></i>
+    </div>
+    <div class="body">
+        <div class="info-b1">
+            <span class="l">低</span>
+            <span class="r">高</span>
+        </div>
+        <table class="info-b2">
+            <tr>
+                <td><i class="i1"></i></td>
+                <td><i class="i2"></i></td>
+                <td><i class="i3"></i></td>
+                <td><i class="i4"></i></td>
+                <td><i class="i5"></i></td>
+                <td>国家水平</td>
+            </tr>
+            <tr>
+                <td><i class="l1"></i></td>
+                <td><i class="l2"></i></td>
+                <td><i class="l3"></i></td>
+                <td><i class="l4"></i></td>
+                <td><i class="l5"></i></td>
+                <td>省或局部水平</td>
+            </tr>
+        </table>
+    </div>
+</div>

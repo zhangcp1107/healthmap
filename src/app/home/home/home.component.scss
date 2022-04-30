@@ -1,0 +1,113 @@
+:host ::ng-deep {
+    .sh-icon-top {
+        position: fixed;
+        top: 15px;
+        font-size: 13px;
+        background: rgb(0 0 0 / 40%);
+        color: white;
+        padding: 8px;
+        border-radius: 6px;
+        cursor: pointer;
+        &.a,&.b,&.c,&.add {
+            &.active {
+                background: rgb(0 0 0 / 70%);
+            }
+        }
+        &.a {
+            right: 20px;
+            transform: scaleX(-1);
+        }
+        &.b {
+            right: 55px;
+        }
+        &.c {
+            right: 90px;
+        }
+        &.add {
+            right: 135px;
+        }
+        &.chart, &.list {
+            background: rgba(0,60,113,0.5);
+            &.active {
+                background: rgb(0,60,113,0.7);
+            }
+        }
+        &.chart {
+            right: 185px;
+        }
+        &.list {
+            right: 220px;
+        }
+    }
+    .sh-top-pop-msg {
+        width: 340px;
+        position: fixed;
+        top: 90px;
+        right: 50px;
+        z-index: 50;
+        border-radius: 5px;
+        [nztype~=close-circle] {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            color: black;
+            font-size: 19px;
+            color: white;
+            font-size: 19px;
+            background: black;
+            border-radius: 10px;
+        }
+        & > .head {
+            cursor: move;
+            background: rgba(0,60,113,0.7);
+            border-radius: 2px 2px 0 0;
+            padding: 10px 10px 7px 10px;
+            color: #fff;
+            font-family: MuseoSlab-300;
+            font-weight: normal;
+            font-style: normal;
+            & > i {
+                font-size: 14px;
+                cursor: pointer;
+                color: rgba(0,60,113);
+                background-color: white;
+                border-radius: 15px;
+                vertical-align: baseline;
+                vertical-align: top;
+                font-weight: bolder;
+            }
+        }
+        & > .body {
+            background: white;
+            padding: 15px 0 0 0;
+            & > .info-b1 {
+                width: 256px;
+                padding: 0 13px;
+                height: 21px;
+                & > .r {
+                    float: right;
+                }
+                & > .l {
+                    float: left;
+                }
+            }
+            & > .info-b2 {
+                width: 95%;
+                margin: 0 0 5% 3%;
+                & > tr {
+                    &:nth-child(1) {
+                        border-top: 1px solid #eee;
+                        border-bottom: 1px solid #eee;
+                    }
+                    & > td {
+                        min-width: 51px;
+                        height: 23px;
+                        & > .i1,.i2,.i3,.i4,.i5 {
+    
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

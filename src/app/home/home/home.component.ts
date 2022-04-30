@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  active: string = '';
+  active: string = 'environment';
+  popEnvironmentModal = false
 
   constructor() { }
 

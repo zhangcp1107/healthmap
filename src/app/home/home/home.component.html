@@ -1,5 +1,13 @@
 <sh-map></sh-map>
 
+<i nz-icon nzType="search" nzTheme="outline"></i>
+
+<!-- <i nz-icon nzType="caret-down" nzTheme="outline"></i> -->
+<!-- <i nz-icon nzType="folder-open" nzTheme="outline"></i>
+<i nz-icon nzType="monitor" nzTheme="outline"></i>
+<i nz-icon nzType="info-circle" nzTheme="outline"></i>
+<i nz-icon nzType="arrow-right" nzTheme="outline"></i> -->
+
 <i (click)="active='info'" [ngClass]="{active: active=='info'}"
     class="sh-icon-top a" nz-icon nzType="key"
     nzTheme="outline" nz-tooltip nzTooltipTitle="地图热度颜色说明"
@@ -27,14 +35,8 @@
     nzTheme="outline" nz-tooltip nzTooltipTitle="列表视图"
     nzTooltipPlacement="bottom"></i>
 
-<!-- <i nz-icon nzType="caret-down" nzTheme="outline"></i> -->
-<!-- <i nz-icon nzType="folder-open" nzTheme="outline"></i>
-<i nz-icon nzType="monitor" nzTheme="outline"></i>
-<i nz-icon nzType="info-circle" nzTheme="outline"></i>
-<i nz-icon nzType="arrow-right" nzTheme="outline"></i> -->
-
 <div *ngIf="active=='info'" class="sh-top-pop-msg">
-    <i nz-icon nzType="close-circle" nzTheme="outline"></i>
+    <i (click)="active=''" nz-icon nzType="close-circle" nzTheme="outline"></i>
     <div class="head">
         疫情程度：<i nz-icon nzType="info-circle" nzTheme="outline"></i>
     </div>
@@ -63,3 +65,180 @@
         </table>
     </div>
 </div>
+
+<div *ngIf="active=='setting'" class="sh-top-pop-msg">
+    <i (click)="active=''" nz-icon nzType="close-circle" nzTheme="outline"></i>
+    <div class="head">
+        设置
+    </div>
+    <div class="body-setting">
+        <div class="item-h">语言</div>
+        <div class="item-b">简体中文</div>
+    </div>
+</div>
+
+<div *ngIf="active=='environment'" class="sh-top-pop-msg">
+    <i (click)="active=''" nz-icon nzType="close-circle" nzTheme="outline"></i>
+    <div class="head">
+        我附近的疫情<i (click)="popEnvironmentModal=true" nz-icon nzType="info-circle" nzTheme="outline"></i>
+    </div>
+    <div class="body-environment">
+        <div class="sh-mp-body">
+            <p class="sh-mp-item">
+            <!-- <p class="sh-mp-item" (click)="popModal=true" *ngFor="let data of activeData.dataList"> -->
+                <span class="sh-mp-msg-s">10 四月 2022 - </span>
+                <span class="sh-mp-msg-a">Google News COVID-19  在COVID激增的情况下，美国命令领事馆工作人员离开上海-NPR</span>
+            </p>
+            <p class="sh-mp-item">
+            <!-- <p class="sh-mp-item" (click)="popModal=true" *ngFor="let data of activeData.dataList"> -->
+                <span class="sh-mp-msg-s">10 四月 2022 - </span>
+                <span class="sh-mp-msg-a">Google News COVID-19  在COVID激增的情况下，美国命令领事馆工作人员离开上海-NPR</span>
+            </p>
+            <p class="sh-mp-item">
+            <!-- <p class="sh-mp-item" (click)="popModal=true" *ngFor="let data of activeData.dataList"> -->
+                <span class="sh-mp-msg-s">10 四月 2022 - </span>
+                <span class="sh-mp-msg-a">Google News COVID-19  在COVID激增的情况下，美国命令领事馆工作人员离开上海-NPR</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<nz-modal
+    nzClassName="sh-pop-environment-modal"
+    (nzOnCancel)="popEnvironmentModal=false"
+    nzWidth="740px"
+    nzCentered="true"
+    [(nzVisible)]="popEnvironmentModal"
+    [nzContent]="modalContent"
+    [nzFooter]="modalFooter">
+    <ng-template #modalContent>
+        <div class="fancybox-inner">
+            <section id="dis_cat" class="mi_info" style="display: block;">
+                <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">疾病类别</span></span></h5>
+                <p><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">十二种疾病类别用于帮助您快速找到您在当地寻找的内容。</span><span style="vertical-align: inherit;">大多数类别是指疾病影响您身体的部位，例如霍乱的胃肠道疾病或肺炎的呼吸系统疾病。</span><span style="vertical-align: inherit;">我们还跟踪环境风险（即由于污水导致海滩关闭）和动物疾病（即发现狂犬病的狐狸），为您提供您所在地区疾病的更广泛了解。</span></span></p>
+                <p><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">每个类别中的警报数量决定了它们在“我附近的爆发”部分中出现的顺序。</span><span style="vertical-align: inherit;">警报数量最多的类别首先出现。</span><span style="vertical-align: inherit;">不会显示您所在地区没有警报的类别。</span></span></p>
+                
+                <div class="dis_cat_popup">
+                    <div class="dis_icon">
+                        <img src="./assets/dis-img/60.png" alt="动物警报">
+                    </div>
+                    <div class="dis_list">
+                        <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">动物</span></span></h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">
+                        影响家畜、牲畜和野生动物的疾病。
+                    </span></span></div>
+                </div>
+                
+                <div class="dis_cat_popup">
+                    <div class="dis_icon">
+                        <img src="./assets/dis-img/61.png" alt="环境警报">
+                    </div>
+                    <div class="dis_list">
+                        <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">环境的</span></span></h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">
+                        可能影响人类健康的环境变化（自然/人为灾害、热浪、火山爆发）。
+                    </span></span></div>
+                </div>
+                
+                <div class="dis_cat_popup">
+                    <div class="dis_icon">
+                        <img src="./assets/dis-img/62.png" alt="发烧警报">
+                    </div>
+                    <div class="dis_list">
+                        <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">发烧/发热</span></span></h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">
+                        以高体温（发烧）为特征的疾病。
+                    </span></span></div>
+                </div>
+                
+                <div class="dis_cat_popup">
+                    <div class="dis_icon">
+                        <img src="./assets/dis-img/63.png" alt="胃肠道警报">
+                    </div>
+                    <div class="dis_list">
+                        <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">胃肠道</span></span></h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">
+                        引起呕吐、腹泻或腹部绞痛的疾病。
+                    </span></span></div>
+                </div>
+                
+                <div class="dis_cat_popup">
+                    <div class="dis_icon">
+                        <img src="./assets/dis-img/64.png" alt="出血警报">
+                    </div>
+                    <div class="dis_list">
+                        <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">出血性</span></span></h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">
+                        引起严重出血的疾病。
+                    </span></span></div>
+                </div>
+                
+                <div class="dis_cat_popup">
+                    <div class="dis_icon">
+                        <img src="./assets/dis-img/65.png" alt="医院获得性感染">
+                    </div>
+                    <div class="dis_list">
+                        <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">医院获得性感染</span></span></h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">
+                        疾病在医疗机构（即医院、疗养院等）中感染或主要传播。
+                    </span></span></div>
+                </div>
+                
+                <div class="dis_cat_popup">
+                    <div class="dis_icon">
+                        <img src="./assets/dis-img/66.png" alt="神经系统警报">
+                    </div>
+                    <div class="dis_list">
+                        <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">神经病学</span></span></h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">
+                        影响神经系统（即大脑、脊髓或神经）的疾病。
+                    </span></span></div>
+                </div>
+                
+                <div class="dis_cat_popup">
+                    <div class="dis_icon">
+                        <img src="./assets/dis-img/67.png" alt="其他警报">
+                    </div>
+                    <div class="dis_list">
+                        <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">其他</span></span></h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">
+                        未确诊的疾病、影响植物/作物的疾病、慢性或寄生虫病，包括那些产生模糊症状的疾病。
+                    </span></span></div>
+                </div>
+                
+                <div class="dis_cat_popup">
+                    <div class="dis_icon">
+                        <img src="./assets/dis-img/68.png" alt="呼吸警报">
+                    </div>
+                    <div class="dis_list">
+                        <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">呼吸</span></span></h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">
+                        主要引起咳嗽、充血、呼吸困难等症状的疾病。
+                    </span></span></div>
+                </div>
+                
+                <div class="dis_cat_popup">
+                    <div class="dis_icon">
+                        <img src="./assets/dis-img/69.png" alt="皮肤/皮疹警报">
+                    </div>
+                    <div class="dis_list">
+                        <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">皮疹</span></span></h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">
+                        主要影响皮肤或产生皮疹的疾病。</span></span><br><br><br>
+                    </div>
+                </div>
+                
+                <div class="dis_cat_popup">
+                    <div class="dis_icon">
+                        <img src="./assets/dis-img/70.png" alt="性病警报">
+                    </div>
+                    <div class="dis_list">
+                        <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">性病</span></span></h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">
+                        与性接触相关或主要通过性接触传播的疾病。
+                    </span></span></div>
+                </div>
+                
+                <div class="dis_cat_popup">
+                    <div class="dis_icon">
+                        <img src="./assets/dis-img/71.png" alt="矢量警报">
+                    </div>
+                    <div class="dis_list">
+                        <h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">矢量传播</span></span></h5><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">
+                        由节肢动物传播给人类或动物的疾病，包括蚊子、蜱虫、苍蝇和跳蚤。
+                    </span></span></div>
+                </div>
+            </section>
+        </div>
+    </ng-template>
+    <ng-template #modalFooter></ng-template>
+</nz-modal>

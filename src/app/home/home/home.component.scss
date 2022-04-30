@@ -48,6 +48,7 @@
         border-radius: 5px;
         [nztype~=close-circle] {
             position: absolute;
+            cursor: pointer;
             right: -10px;
             top: -10px;
             color: black;
@@ -81,7 +82,7 @@
             background: white;
             padding: 15px 0 0 0;
             & > .info-b1 {
-                width: 256px;
+                width: 246px;
                 padding: 0 13px;
                 height: 21px;
                 & > .r {
@@ -103,9 +104,194 @@
                         min-width: 51px;
                         height: 23px;
                         & > .i1,.i2,.i3,.i4,.i5 {
-    
+                            width: 20px;
+                            height: 20px;
+                            display: inherit;
+                            border-radius: 20px;
+                        }
+                        & > .i1 {
+                            background: rgb(236,222,239);
+                        }
+                        & > .i2 {
+                            background: rgb(208,209,230);
+                        }
+                        & > .i3 {
+                            background: rgb(166,189,219);
+                        }
+                        & > .i4 {
+                            background: rgb(103,169,207);
+                        }
+                        & > .i5 {
+                            background: rgb(28,144,153);
+                        }
+                        & > .l1,.l2,.l3,.l4,.l5 {
+                            width: 20px;
+                            height: 20px;
+                            display: inherit;
+                            border-radius: 20px;
+                            background: red;
+                        }
+                        & > .l1 {
+                            background: rgb(208,209,230);
+                        }
+                        & > .l2 {
+                            background: rgb(166,189,219);
+                        }
+                        & > .l3 {
+                            background: rgb(103,169,207);
+                        }
+                        & > .l4 {
+                            background: rgb(28,144,153);
+                        }
+                        & > .l5 {
+                            background: rgb(1,108,89);
                         }
                     }
+                }
+            }
+        }
+        & > .body-setting {
+            background: white;
+            padding: 15px 0 0 0;
+            font-family: MuseoSlab-300;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 16px;
+            & > .item-h {
+                margin: 10px 15px;
+                display: inline-block;
+            }
+            & > .item-b {
+                margin: 10px 15px;
+                width: 70%;
+                text-align: right;
+                display: inline-block;
+            }
+        }
+        .body-environment {
+            background-color: white;
+            padding: 15px 0 0 0;
+            font-family: MuseoSlab-300;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 16px;
+            .sh-mp-item {
+                margin: 0 10px;
+                .sh-mp-msg-a {
+                    text-decoration: none;
+                    border-bottom: 0;
+                    color: #c52f3f;
+                    transition: all 200ms ease-in;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .sh-pop-environment-modal {
+        .ant-modal-close-x > i {
+            background: black;
+            color: white;
+            border-radius: 30px;
+            padding: 4px;
+            border: 1px solid;
+            font-size: 14px;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+        body { 
+            margin: 0; padding: 0; 
+        }
+        .ant-modal-body {
+            padding: 0;
+        }
+        .ant-modal-footer {
+            display: none;
+        }
+        .ant-modal-header {
+            background: #333;
+            margin: 0px;
+            color: #fff;
+            font-size: 1em;
+            line-height: 1.4em;
+            font-size: 1.2em;
+            line-height: 1.166666em;
+            padding: 14px 20px;
+            font-family: MuseoSlab-300;
+            font-weight: normal;
+            font-style: normal;
+            border-bottom: 1px solid #000;
+            .ant-modal-title {
+                margin-right: 20px;
+            }
+        }
+        .sh-pop-sub-title {
+            margin: 0px;
+            background: #000;
+            color: #fff;
+            font-size: 1em;
+            line-height: 1.4em;
+            font-size: 1.2em;
+            line-height: 1.166666em;
+            padding: 14px 20px;
+            font-family: MuseoSlab-300;
+            font-weight: normal;
+            font-style: normal;
+            border-bottom: 1px solid #000;
+            vertical-align: baseline;
+        }
+        .sh-pop-msg-item {
+            border-top: 1px solid #ddd;
+            background: #fff;
+            padding: 21px 0;
+            .sh-pop-msg-item-l {
+                display: inline-block;
+                width: 92px;
+                margin-left: 20px;
+                font-family: MuseoSans-500, sans-serif;
+                font-weight: normal;
+                font-style: normal;
+                color: #333;
+            }
+            .sh-pop-msg-item-r {
+                display: inline-block;
+                width: 520px;
+                vertical-align: top;
+            }
+        }
+    }
+
+    .fancybox-inner {
+        overflow-y: auto;
+        width: 100%;
+        padding: 20px;
+        max-height: 95vh;
+        font-family: MuseoSans-300, sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        h5 {
+            font-size: 15px;
+        }
+        .dis_cat_popup {
+            width: 50%;
+            display: inline-block;
+            margin-bottom: 10px;
+            .dis_icon {
+                width: 80px;
+                margin-right: 10px;
+                display: inline-block;
+            }
+            .dis_list {
+                display: inline-block;
+                width: 220px;
+                vertical-align: middle;
+                h5 {
+                   color: rgb(197, 47, 63);
+                   margin: 0;
                 }
             }
         }

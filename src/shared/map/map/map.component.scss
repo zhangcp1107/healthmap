@@ -29,6 +29,8 @@
     .sh-mp-body {
         opacity: 1;
         background-color: white;
+        max-height: 60vh;
+        overflow-y: auto;
         .sh-mp-item {
             .sh-mp-msg-a {
                 text-decoration: none;

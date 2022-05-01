@@ -1,0 +1,434 @@
+@import "vars";
+
+body {
+  color: $color-black-primary; // 覆盖ng-zorro中的颜色
+  font-size: 14px !important; // 覆盖ng-zorro中的字体大小
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑";
+  //background-color: $color-body-bg;
+  background-color: white;
+  min-height: 100%;
+  min-width: 1400px;
+  transition: background 1s cubic-bezier(.075, .82, .165, 1);
+  word-break: break-word;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.text-tip {
+  color: $color-text-tip;
+}
+
+.icon-click {
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+    color: $color-nav-hover;
+  }
+}
+
+.text-primary {
+  cursor: pointer;
+  color: $color-text-primary;
+  &:hover {
+    color: $color-text-primary-hover;
+  }
+}
+
+.text-primary-static {
+  color: $color-text-primary;
+}
+
+.text-diseditable {
+  color: $color-black-primary;
+}
+
+.text-version {
+  color: $color-text-version;
+}
+
+.text-aux {
+  color: $color-text-aux;
+}
+
+.text-warning {
+  color: $color-text-warning;
+}
+
+.text-green {
+  color: $color-green;
+}
+
+.emphasis {
+  color: rgb(29, 117, 209);
+}
+
+.middle-text-30 {
+  height: 30px;
+  line-height: 30px;
+}
+
+.td-ellipsis {
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+}
+
+[type="file"] {
+  display: none !important;
+}
+
+.icon-hover-show {
+  .icon-hover {
+    visibility: hidden;
+  }
+  &:hover {
+    .icon-hover {
+      visibility: inherit;
+    }
+  }
+  &.active {
+    .icon-hover {
+      visibility: inherit;
+    }
+  }
+}
+
+tr.active td {
+  background-color: $color-bg-table-active;
+}
+
+.ant-table-tbody > tr.active > td {
+  background-color: $color-bg-table-active;
+}
+
+.ant-table-tbody > tr.ant-table-row-hover > td,
+.ant-table-tbody > tr:not(.view):hover > td,
+.ant-table-tbody > tr.active:hover > td {
+  background-color: $color-bg-table-hover;
+}
+
+.ant-table-tbody > tr.tr-order > td {
+  transition: none !important;
+  color: $color-text-primary;
+  background-color: $color-gray-light;
+  .td-order {
+    background-color: $color-order-bg-hover;
+    color: $color-order-hover;
+  }
+}
+
+.ant-table-tbody > tr:hover.tr-order > td {
+  color: $color-black-primary;
+  background-color: $color-order-tr-bg-hover;
+  .text-primary {
+    color: $color-black-primary;
+  }
+  .td-order {
+    background-color: $color-order-bg-hover;
+    color: $color-order-hover;
+  }
+}
+
+.ant-table-tbody > tr.active.tr-order > td,
+.ant-table-tbody > tr.active.tr-order:hover > td {
+  background-color: $color-text-primary;
+  color: $color-white;
+  .text-primary {
+    color: $color-white;
+  }
+  .td-order {
+    background-color: $color-nav-deep;
+    color: $color-white;
+  }
+}
+
+.x-axis-scroll-table {
+  .ant-table-wrapper {
+    //width: 393px;
+    .ant-table-tbody > tr > td {
+      white-space: nowrap !important;
+      word-break: normal !important;
+    }
+  }
+}
+
+
+.gray-table {
+  td {
+    background-color: $color-gray-light;
+    &.active {
+      background-color: $color-bg-table-active;
+    }
+  }
+}
+
+.stripe-table {
+  &:nth-of-type(odd) {
+    td {
+      background-color: $color-white;
+    }
+  }
+  &:nth-of-type(even) {
+    td {
+      background-color: $color-stripe-tr-bg;
+    }
+  }
+  &.ant-table-tbody tr.application-item:not(.view) {
+    cursor: pointer;
+    &:hover, &.active, &.active:hover {
+      td {
+        background-color: $color-gray;
+      }
+    }
+  }
+}
+
+.bg-1 {
+  background-color: $c-1;
+}
+
+.bg-2 {
+  background-color: $c-2;
+}
+
+.bg-3 {
+  background-color: $c-3;
+}
+
+.bg-4 {
+  background-color: $c-4;
+}
+
+.bg-5 {
+  background-color: $c-5;
+}
+
+.bg-6 {
+  background-color: $c-6;
+}
+
+.bg-7 {
+  background-color: $c-7;
+}
+
+.bg-8 {
+  background-color: $c-8;
+}
+
+.bg-9 {
+  background-color: $c-9;
+}
+
+.bg-10 {
+  background-color: $c-10;
+}
+
+.c-11 {
+  color: $c-11;
+}
+
+.c-12 {
+  color: $c-12;
+}
+
+.bg-gray {
+  background-color: $color-application-bg;
+}
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  //width: 0;
+  //height: 0;
+  background-color: $color-white;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  background-color: #F5F5F5;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: $color-text-tip;
+}
+
+.common-box {
+  line-height: 28px;
+  padding: 10px 20px;
+  background-color: $color-gray-light;
+  border-bottom: $border;
+}
+
+.common-box-none {
+  border: none !important;
+}
+
+.common-row {
+  padding-bottom: 10px;
+  line-height: 24px;
+}
+
+.common-reset-margin {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.c-border {
+  border: $border;
+}
+
+.common-hr {
+  border-bottom: $border;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.common-title {
+  border-bottom: $border;
+  padding-left: 20px !important;
+  line-height: 28px;
+}
+
+.common-border-right {
+  border-right: $border;
+}
+
+.common-border-left-content {
+  border-left: $border;
+}
+
+.common-none-border-left {
+  border-left: none !important;
+}
+
+.common-border-left-2 {
+  border-left: 2px solid $color-black-lighter;
+}
+
+.common-border-buttom {
+  border-bottom: 1px solid $color-black-lighter;
+}
+
+// 模拟输入框的边框
+.common-border {
+  border: 1px solid $color-input-border;
+  border-radius: 4px;
+  min-height: 70px;
+  i {
+    &::before {
+      color: $color-text-primary;
+    }
+  }
+}
+
+.common-gray-bg {
+  background-color: $color-gray-light;
+}
+
+.common-white-bg {
+  background-color: $color-white;
+}
+
+.common-blue-bg {
+  background-color: $color-blue-light;
+}
+
+.common-green-bg {
+  background-color: $color-green;
+}
+
+.common-input-wrap {
+  .ant-input-wrapper {
+    width: 120px;
+    display: inline-block;
+  }
+}
+
+.c-gray {
+  &:before {
+    color: $color-button-text;
+  }
+}
+
+// 表格中checkbox的padding
+.ant-table-tbody > tr > td.checkbox-td {
+  padding: 16px 2px 16px 20px !important;
+}
+
+.table-break tr > td {
+  word-break: break-all !important;
+}
+
+// 不可编辑的状态样式
+.permission-disabled {
+  cursor: not-allowed !important;
+}
+
+.text-overflow {
+  vertical-align: -5px;
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.graph-container {
+  display: inline-block;
+}
+.ant-breadcrumb, ant-breadcrumb-link, ant-breadcrumb-separator{
+  color: #666666 !important;
+}
+.table-head .ant-table-placeholder {
+  display: none;
+}
+.pagination {
+  margin-top: 20px;
+  float: right;
+}
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {color: rgb(25, 158, 216)}
+}
+
+// modal 模态框 居中
+.vertical-center-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vertical-center-modal .ant-modal {
+  top: 0;
+}
+
+.spin-td  {
+  border: none !important;
+  padding: 0 !important;
+  text-align: center;
+  nz-spin {
+    margin: -1px;
+  }
+  // border-bottom-left-radius: 10px;
+  // border-bottom-right-radius: 10px;
+}

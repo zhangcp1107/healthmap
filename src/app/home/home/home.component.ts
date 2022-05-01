@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  active: string = 'environment';
-  popEnvironmentModal = false
+  active = 'environment';
+  activeb = '';
+  popEnvironmentModal = false;
+  popAlertModal = false;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private activateRoute: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
   }
 
+  addAlert(e: any) {
+    // this.active='add'
+    this.router.navigate(['../login'], {
+      relativeTo: this.activateRoute
+    });
+  }
 }

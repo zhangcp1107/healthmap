@@ -1,4 +1,15 @@
 :host ::ng-deep {
+    .sh-top-search-info {
+        position: fixed;
+        top: 15px;
+        left: 110px;
+        font-size: 18px;
+        cursor: pointer;
+        i {
+            margin-right: 20px;
+            font-size: 14px;
+        }
+    }
     .sh-icon-top {
         position: fixed;
         top: 15px;
@@ -37,6 +48,12 @@
         }
         &.list {
             right: 220px;
+        }
+        &.search {
+            left: 20px;
+        }
+        &.folder {
+            left: 60px;
         }
     }
     .sh-top-pop-msg {
@@ -185,6 +202,44 @@
                     cursor: pointer;
                 }
             }
+        }
+    }
+    .sh-bottom-pop-msg {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 50;
+        border-radius: 5px;
+        [nztype~=double-right] {
+            position: absolute;
+            top: 8px;
+            left: 49%;
+            cursor: pointer;
+            transform: rotate(90deg);
+            font-size: 19px;
+            color: white;
+            font-size: 19px;
+        }
+        & > .head {
+            cursor: move;
+            background: rgba(0,60,113,0.7);
+            border-radius: 2px 2px 0 0;
+            padding: 10px 10px 7px 10px;
+            color: #fff;
+            min-height: 40px;
+            font-family: MuseoSlab-300;
+            font-weight: normal;
+            font-style: normal;
+        }
+        & > .body-chart {
+            background: white;
+            padding: 30px;
+            min-height: 200px;
+        }
+        & > .body-list {
+            background: white;
+            min-height: 200px;
         }
     }
 }

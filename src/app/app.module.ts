@@ -28,9 +28,16 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     BrowserAnimationsModule,
     RouterModule.forRoot([
       {
-        path: '',
+        path: 'app',
         pathMatch: 'full',
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+        data: {
+          title: 'login'
+        }
+      }, {
+        path: 'login',
+        pathMatch: 'full',
+        loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
         data: {
           title: 'login'
         }
@@ -38,7 +45,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
       {
         path: '**',
         pathMatch: 'full',
-        redirectTo: ''
+        redirectTo: 'app'
       }
     ], { useHash: true })
   ],

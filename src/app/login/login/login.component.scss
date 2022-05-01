@@ -1,0 +1,47 @@
+@import "../../style/vars";
+
+:host {
+  position: fixed;
+  top: 25%;
+  left: 38%;
+  .login-form {
+    width: 360px;
+    input {
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+}
+
+.logo {
+  text-align: center;
+  margin: 40px;
+  font-size: 30px;
+}
+
+.qk-user-icon {
+  background: url('./images/u100.png') no-repeat;
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.qk-lock-icon {
+  background: url('./images/u102.png') no-repeat;
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+}
+
+

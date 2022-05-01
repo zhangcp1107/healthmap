@@ -1,0 +1,41 @@
+<div class="logo">
+  病毒和传染病监测
+</div>
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-control [nzErrorTip]="userError1">
+      <nz-input-group [nzSuffix]="prefixUser">
+        <input type="text" nz-input formControlName="userName" placeholder="{{'请输入账号'}}">
+      </nz-input-group>
+      <ng-template #userError1 let-control>
+        <ng-container *ngIf="control.hasError('required')">请输入账号!</ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzErrorTip]="userError2">
+      <nz-input-group [nzSuffix]="prefixLock">
+        <input type="password" nz-input formControlName="password" placeholder="{{'请输入密码'}}">
+      </nz-input-group>
+      <ng-template #userError2 let-control>
+        <ng-container *ngIf="control.hasError('required')">请输入密码!</ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <label nz-checkbox formControlName="remember">
+        <span class="c-333 f12i">{{'记住密码'}}</span>
+      </label>
+      <!--<a class="login-form-forgot" class="login-form-forgot c-f f12i" (click)="forgotPassword()">{{'忘记密码' |
+        translate}}</a>-->
+      <button nz-button [nzLoading]="isLoading" class="login-form-button" [nzType]="'primary'">{{'登录'}}</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<ng-template #prefixUser>
+  <div class="qk-user-icon"></div>
+</ng-template>
+<ng-template #prefixLock>
+  <div class="qk-lock-icon"></div>
+</ng-template>

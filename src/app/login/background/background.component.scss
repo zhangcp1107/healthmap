@@ -1,0 +1,16 @@
+@import "../../style/vars";
+
+.warp {
+  background-color: rgb(240,242,245);
+  width: 100%;
+  height: 100%;
+  background: url('./images/bg_image.svg') no-repeat;
+  background-size: 100% 100%;
+  .bg1 {
+    // background: url('./images/login_bg_1.png') no-repeat;
+    // background-size: 530px 300px;
+    // background-position: 275px 140px;
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -32,7 +32,7 @@ export class MapComponent implements AfterViewInit {
     const map = new mapboxgl.Map({
       container: this.mapElRef.nativeElement,
       style: 'mapbox://styles/mapbox/streets-v11',
-      zoom: 6,
+      zoom: 1,
       // center: [116.0259, 39.9010],
       center: [121.5, 31.3],
     });

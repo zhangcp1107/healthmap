@@ -8,9 +8,11 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { ChartModule } from 'src/shared/chart/chart.module';
+import { SearchComponent } from './search/search.component';
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    SearchComponent
   ],
   imports: [
     MapModule,

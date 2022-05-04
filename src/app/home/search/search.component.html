@@ -1,0 +1,102 @@
+<i nz-icon nzType="search" nzTheme="outline" class="sh-icon-top search"
+    [ngClass]="{active: active=='search'}" (click)="active='search'"
+    nz-tooltip nzTooltipTitle="搜索" nzTooltipPlacement="bottomLeft"></i>
+
+<i nz-icon nzType="folder-open" nzTheme="fill" class="sh-icon-top folder"
+    [ngClass]="{active: active=='list'}" (click)="active='list'"
+    nz-tooltip nzTooltipTitle="已保存的搜索" nzTooltipPlacement="bottom"></i>
+
+<div class="sh-top-search-info" (click)="active=true">
+    <span>0警报&nbsp;&nbsp;&nbsp;&nbsp;疾病</span>
+    <i nz-icon nzType="caret-down" nzTheme="outline"></i>
+    <span>位置</span>
+    <i nz-icon nzType="caret-down" nzTheme="outline"></i>
+    <span>近一周</span>
+    <i nz-icon nzType="caret-down" nzTheme="outline"></i>
+</div>
+
+<div *ngIf="active" class="sh-top-pop-search">
+    <i (click)="active=false" nz-icon nzType="close-circle" nzTheme="outline"></i>
+    <div class="head">
+        <div class="t1" [ngClass]="{active: active=='search'}" (click)="active='search'">
+            <i nz-icon nzType="search" nzTheme="outline" class=""></i>
+            搜索
+        </div>
+        <div class="t2" [ngClass]="{active: active=='list'}" (click)="active='list'">
+            <i nz-icon nzType="folder-open" nzTheme="fill" class=""></i>
+            已经保存到搜索
+        </div>
+    </div>
+    <div class="body" *ngIf="active=='search'">
+        <div class="type">
+            <nz-checkbox-group [(ngModel)]="checkType"></nz-checkbox-group>
+        </div>
+        <div class="title" (click)="search.dis.show = !search.dis.show">疾病<i nz-icon nzType="caret-down" nzTheme="outline"></i></div>
+        <div *ngIf="search.dis.show" class="item-body">
+            <nz-radio-group [(ngModel)]="search.dis.type">
+                <label nz-radio nzValue="0">所有疾病</label><br/>
+                <label nz-radio nzValue="B">
+                    <nz-select [(ngModel)]="search.dis.value" nzMode="tags" nzPlaceHolder="选择疾病">
+                        <nz-option *ngFor="let option of disOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+                    </nz-select>
+                </label>
+            </nz-radio-group>
+        </div>
+        <div class="title" (click)="search.loc.show = !search.loc.show">位置<i nz-icon nzType="caret-down" nzTheme="outline"></i></div>
+        <div *ngIf="search.loc.show" class="item-body">
+            <nz-radio-group [(ngModel)]="search.loc.type">
+                <label nz-radio nzValue="0">所有地点</label><br/>
+                <label nz-radio nzValue="B">
+                    <nz-select [(ngModel)]="search.loc.value" nzMode="tags" nzPlaceHolder="选择地点">
+                        <nz-option *ngFor="let option of disOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+                    </nz-select>
+                </label>
+            </nz-radio-group>
+        </div>
+        <div class="title" (click)="search.sou.show = !search.sou.show">来源<i nz-icon nzType="caret-down" nzTheme="outline"></i></div>
+        <div *ngIf="search.sou.show" class="item-body">
+            <nz-radio-group [(ngModel)]="search.sou.type">
+                <label nz-radio nzValue="0">所有来源</label><br/>
+                <label nz-radio nzValue="B">
+                    <nz-select [(ngModel)]="search.sou.value" nzMode="tags" nzPlaceHolder="选择地点">
+                        <nz-option *ngFor="let option of disOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+                    </nz-select>
+                </label>
+            </nz-radio-group>
+        </div>
+        <div class="title" (click)="search.type.show = !search.type.show">种类<i nz-icon nzType="caret-down" nzTheme="outline"></i></div>
+        <div *ngIf="search.type.show" class="item-body">
+            <nz-radio-group [(ngModel)]="search.type.type">
+                <label nz-radio nzValue="0">所有物种</label><br/>
+                <label nz-radio nzValue="B">
+                    <nz-select [(ngModel)]="search.type.value" nzMode="tags" nzPlaceHolder="选择地点">
+                        <nz-option *ngFor="let option of disOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+                    </nz-select>
+                </label>
+            </nz-radio-group>
+        </div>
+        <div class="title" (click)="search.date.show = !search.date.show">日期<i nz-icon nzType="caret-down" nzTheme="outline"></i></div>
+        <div *ngIf="search.date.show" class="item-body">
+            <nz-radio-group [(ngModel)]="search.date.type">
+                <label nz-radio nzValue="0">
+                    <nz-select [(ngModel)]="search.date.value" nzMode="tags" nzPlaceHolder="上周">
+                        <nz-option *ngFor="let option of disOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+                    </nz-select>
+                </label><br/>
+                <label nz-radio nzValue="0">
+                    <nz-range-picker [(ngModel)]="search.date.value" ></nz-range-picker>
+                </label>
+            </nz-radio-group>
+        </div>
+    </div>
+    <div class="body-list" *ngIf="active=='list'">
+        <div class="list-itme" *ngFor="let item of searchList">
+            <img src="./assets/img/hmsm.png" />
+            <i *ngIf="item.home" nz-icon nzType="home" nzTheme="outline"></i>
+            <span nzTooltipOverlayClassName="s-m-c" nz-tooltip [nzTooltipTitle]="item.p" nzTooltipPlacement="bottom">{{item.msg}}</span>
+        </div>
+    </div>
+    <div class="footer">
+        提交搜索
+    </div>
+</div>

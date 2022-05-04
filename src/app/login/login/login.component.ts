@@ -6,6 +6,7 @@ import {
 } from '@angular/forms';
 import {LoginHttpService} from '../login-http.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import { GlobalService } from 'src/app/service/global.service';
 /**
  * 登录
  */
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private router: Router,
+              private global: GlobalService,
               private activateRoute: ActivatedRoute,
               private http: LoginHttpService) {
   }
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
         if (res.code === 200) {
           // 跳转主页
+          this.global.login = true;
           this.router.navigate(['../app'], {
             relativeTo: this.activateRoute
           });

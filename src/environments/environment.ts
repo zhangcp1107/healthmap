@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: '/api/',
+  api: 'http://47.96.140.184:8001/',
   // 允许修改API的地址
   api_changeable: true,
   resource: './',

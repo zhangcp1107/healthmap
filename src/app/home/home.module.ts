@@ -9,6 +9,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { ChartModule } from 'src/shared/chart/chart.module';
 import { SearchComponent } from './search/search.component';
+import { HttpService } from './http.service';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -31,5 +32,8 @@ import { SearchComponent } from './search/search.component';
       redirectTo: ''
     }])
   ],
+  providers: [
+    HttpService
+  ]
 })
 export class HomeModule { }

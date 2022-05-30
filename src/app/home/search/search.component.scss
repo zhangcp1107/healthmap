@@ -82,6 +82,8 @@ nz-select {
         & > .body {
             background: white;
             font-size: 15px;
+            max-height: 70vh;
+            overflow-y: scroll;
             & > .type {
                 padding: 5px 15px;
             }

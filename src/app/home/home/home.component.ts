@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalService } from 'src/app/service/global.service';
+import { HttpService } from '../http.service';
 
 export enum DisTypeEnum {
   /** @desc 动物 */
@@ -53,6 +54,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
+    private http: HttpService,
     private global: GlobalService,
     private activateRoute: ActivatedRoute,
   ) { }
@@ -79,6 +81,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.http.getAlerts({}).subscribe(res => {
+      console.log(res)
+    })
     this.validateForm = this.fb.group({
       email: ['', [Validators.required]],
       url: ['', [Validators.required]],

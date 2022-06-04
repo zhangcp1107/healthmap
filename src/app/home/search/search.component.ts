@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { dis } from './dis'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-search',
@@ -8,9 +8,18 @@ import { dis } from './dis'
 })
 export class SearchComponent implements OnInit {
 
+  @Input('count') count = 0;
+
+  @Input('data')
+  data: any = {};
+  @Output()
+  dataChange = new EventEmitter<any>();
+  @Output()
+  searchEvent = new EventEmitter<any>();
+
   active: any = 'search';
 
-  disOption = dis.filter(i => i.label);
+  option: any = { places: [], diseases: [], sources: [], species: []}
 
   search = {
     dis: {
@@ -100,9 +109,41 @@ export class SearchComponent implements OnInit {
 
   searchItemActive = ''
 
-  constructor() { }
+  constructor(
+    private http: HttpService,
+  ) { }
+
+  change() {
+    this.dataChange.emit({
+      diseases: this.search.dis.value.join(';'),
+      places: this.search.loc.value.join(';'),
+      sources: this.search.sou.value.join(';'),
+      species: this.search.type.value.join(';'),
+      dateS: this.formatDate(this.search.date.value[0]),
+      dateE: this.formatDate(this.search.date.value[1]),
+    })
+  }
+
+  formatDate(date: Date) {
+    if (date) {
+      return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`
+    }
+    return ''
+  }
 
   ngOnInit(): void {
+    this.http.getPlaces().subscribe((res: any) => {
+      this.option.places = res.map((d: any) => ({ label: d.place_name, value: d.place_name }))
+    })
+    this.http.getDiseases().subscribe((res: any) => {
+      this.option.diseases = res.map((d: any) => ({ label: d.disease, value: d.disease }))
+    })
+    this.http.getSources().subscribe((res: any) => {
+      this.option.sources = res.map((d: any) => ({ label: d.source, value: d.source }))
+    })
+    this.http.getSpecies().subscribe((res: any) => {
+      this.option.species = res.map((d: any) => ({ label: d.species, value: d.species }))
+    })
   }
 
 }

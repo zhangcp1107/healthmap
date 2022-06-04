@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Map } from 'mapbox-gl';
 import { GlobalService } from 'src/app/service/global.service';
+import { MapComponent } from 'src/shared/map/map/map.component';
 import { HttpService } from '../http.service';
 
 export enum DisTypeEnum {
@@ -28,6 +30,10 @@ const DisMap: any = {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  @ViewChild('map') private map!: MapComponent;
+  count = 0;
+  search = {};
 
   active = 'environment';
   activeb = '';
@@ -59,6 +65,35 @@ export class HomeComponent implements OnInit {
     private activateRoute: ActivatedRoute,
   ) { }
 
+  mapInit(e: any) {
+    this.getData();
+  }
+
+  getData() {
+    this.http.getAlerts({
+      // diseases: 'Norovirus;COVID-19',
+      // // dateS: '2020-1-1',
+      // // dateE: '2022-5-28',
+      // // places: 'Michigan, United States;Italy',
+      // sources: 'Google News;Google 资讯'
+    }).subscribe(res => {
+      this.count = res.markers.length;
+      this.map.setData({
+        type: "FeatureCollection", features: res.markers.map((data: any) => ({
+          type: "Feature",
+          properties: {
+            count: 2,
+            circle_radius: 2,
+            circle_color: 5,
+            content: data.label,
+            list: data.list,
+            place_name: data.place_name
+          },
+          geometry: { type: "Point", coordinates: [data.lon, data.lat] }
+        }))
+      })
+    })
+  }
 
   addAlert(e: any) {
     if (this.global.login) {
@@ -81,9 +116,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.getAlerts({}).subscribe(res => {
-      console.log(res)
-    })
     this.validateForm = this.fb.group({
       email: ['', [Validators.required]],
       url: ['', [Validators.required]],

@@ -10,14 +10,29 @@ export class HttpService {
   }
 
   getAlerts(data: {
+    diseases?: any
+    dateS?: any
+    dateE?: any
+    places?: any
+    sources?: any
   }) {
-    return this.http.get<any>(environment.api + 'alerts', HttpUtil.setParams({
-      diseases: 'Norovirus;COVID-19',
-      dateS: '2020-1-1',
-      dateE: '2022-5-28',
-      places: 'Michigan, United States;Italy',
-      sources: 'Google News;Google 资讯'
-    }));
+    return this.http.get<any>(environment.api + 'alerts/get', HttpUtil.setParams(data));
+  }
+
+  getDiseases() {
+    return this.http.get<any>(environment.api + 'diseases');
+  }
+
+  getPlaces() {
+    return this.http.get<any>(environment.api + 'places');
+  }
+
+  getSources() {
+    return this.http.get<any>(environment.api + 'sources');
+  }
+
+  getSpecies() {
+    return this.http.get<any>(environment.api + 'species');
   }
 
   /**

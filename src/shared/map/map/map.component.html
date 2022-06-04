@@ -2,37 +2,30 @@
 <div #popupMsg>
     <div *ngIf="activeData.dataList.length">
         <div class="sh-mp-head">{{activeData.title}}</div>
-        <div class="sh-mp-body" [innerHTML]="activeData.html" (click)="popModal=true">
-            <!-- <p class="sh-mp-item" (click)="popModal=true" *ngFor="let data of activeData.dataList">
-                <span class="sh-mp-msg-s">10 四月 2022 - </span>
-                <span class="sh-mp-msg-a">{{data.content}}</span>
-            </p> -->
+        <div class="sh-mp-body">
+            <p class="sh-mp-item" (click)="popModal=data" *ngFor="let data of activeData.dataList">
+                <span class="sh-mp-msg-s">{{data?.date}}&nbsp;&nbsp;</span>
+                <span class="sh-mp-msg-a">{{data?.title}}</span>
+            </p>
         </div>
     </div>
 </div>
 
 <nz-modal
     nzClassName="sh-pop-modal"
-    (nzOnCancel)="popModal=false"
+    (nzOnCancel)="popModal=null"
     nzWidth="662px"
     nzCentered="false"
-    [(nzVisible)]="popModal"
+    [(nzVisible)]="!!popModal"
     [nzTitle]="modalTitle"
     [nzContent]="modalContent"
     [nzFooter]="modalFooter">
-    <ng-template #modalTitle>U.S. orders consular staff to leave Shanghai amid
-        COVID surge - NPR - Google News COVID-19 - 04/12/2022</ng-template>
+    <ng-template #modalTitle>{{popModal.title}}</ng-template>
     <ng-template #modalContent>
-        <p class="sh-pop-sub-title">在COVID激增的情况下，美国命令领事馆工作人员离开上海-NPR</p>
+        <!-- <p class="sh-pop-sub-title">在COVID激增的情况下，美国命令领事馆工作人员离开上海-NPR</p> -->
         <div class="sh-pop-msg-item">
             <div class="sh-pop-msg-item-l">Summary</div>
-            <div class="sh-pop-msg-item-r">
-                <p>宁德蕉城发现本土阳性病例，上海、吉林等地疫情严峻复杂，泉州市疾控中心发布健康提醒-东南网-福建官方新闻门户  东南网 view full article</p>
-                <p>Ningde, Fujian Province, China | Sexually Transmitted Infection | Humans</p>
-                <p>Shanghai, China | Sexually Transmitted Infection | Humans</p>
-                <p>Jilin Province, China | Sexually Transmitted Infection | Humans</p>
-                <p>Quanzhou, Fujian Province, China | Sexually Transmitted Infection | Humans</p>
-            </div>
+            <a target="_blank" [href]="popModal.news_address" class="sh-pop-msg-item-r">{{popModal.summary}}</a>
         </div>
         <div class="sh-pop-msg-item">
             <div class="sh-pop-msg-item-l">评分</div>

@@ -1,4 +1,4 @@
-<sh-map></sh-map>
+<sh-map #map (initEvent)="mapInit($event)"></sh-map>
 
 <i (click)="active='info'" [ngClass]="{active: active=='info'}" class="sh-icon-top a" nz-icon nzType="key"
     nzTheme="outline" nz-tooltip nzTooltipTitle="地图热度颜色说明" nzTooltipPlacement="bottomRight"></i>
@@ -350,7 +350,7 @@
     </div>
 </div>
 
-<app-search></app-search>
+<app-search [count]="count" [(data)]="search" (searchEvent)="getData()"></app-search>
 
 <nz-modal nzClassName="sh-pop-add-modal" (nzOnCancel)="popAddModal=false" nzWidth="500px"
     nzCentered="true" [(nzVisible)]="popAddModal" [nzContent]="modalContentAdd" [nzFooter]="modalAddFooter">

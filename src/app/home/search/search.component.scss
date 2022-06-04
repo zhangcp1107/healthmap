@@ -28,10 +28,19 @@ nz-select {
         top: 15px;
         left: 110px;
         font-size: 18px;
+        max-width: calc(100vw - 390px);
         cursor: pointer;
         i {
             margin-right: 20px;
             font-size: 14px;
+        }
+        .info {
+            max-width: 190px;
+            vertical-align: -8px;
+            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
     .sh-top-pop-search {

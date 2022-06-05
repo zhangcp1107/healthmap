@@ -68,6 +68,7 @@ import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzResizableModule } from 'ng-zorro-antd/resizable';
+import { HttpInterceptorModule } from './http-api/http-interceptor.module';
 
 @NgModule({
   declarations: [],
@@ -77,9 +78,11 @@ import { NzResizableModule } from 'ng-zorro-antd/resizable';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpInterceptorModule,
     NzFormModule
   ],
   exports: [
+    HttpInterceptorModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

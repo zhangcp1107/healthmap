@@ -35,13 +35,11 @@ export class HttpService {
     return this.http.get<any>(environment.api + 'species');
   }
 
-  /**
-   * 注册
-   */
-  register(data: {
-    mobile: string,
-    password: string
-  }) {
-    return this.http.post<any>(environment.api + 'user/insert_user', data);
+  deleteAlert(id: string) {
+    return this.http.get<any>(environment.api + 'admin/alert/delete', HttpUtil.setParams({id}));
+  }
+
+  createAlert(data: any) {
+    return this.http.post<any>(environment.api + 'alert/create', data);
   }
 }

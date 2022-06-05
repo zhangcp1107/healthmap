@@ -17,14 +17,12 @@ export class LoginHttpService {
     user_name: string,
     user_pwd: string
   }) {
-    // return this.http.post<any>(environment.api + 'user/login_user', data);
-    return Observable.create((observer: Observer<any>) => {
-      setTimeout(() => {
-        observer.next({
-          code: 200
-        });
-        observer.complete();
-      }, 1500);  
+    return this.http.post<any>(environment.api + '/user/login', {
+      user: {
+        email: data.user_name,
+        // username: data.user_name,
+        password: data.user_pwd
+      }
     });
   }
 
@@ -32,9 +30,10 @@ export class LoginHttpService {
    * 注册
    */
   register(data: {
-    mobile: string,
+    email: string,
+    username: string,
     password: string
   }) {
-    return this.http.post<any>(environment.api + 'user/insert_user', data);
+    return this.http.post<any>(environment.api + '/user/create', {user: data});
   }
 }

@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
   @Output()
   searchEvent = new EventEmitter<any>();
 
-  active: any = 'search';
+  active: any = '';
 
   option: any = { places: [], diseases: [], sources: [], species: []}
 

@@ -13,16 +13,16 @@ export enum DisTypeEnum {
   BREATHE = 1
 }
 
-const DisMap: any = {
-  [DisTypeEnum.ANIMAL]: {
-    msg: '动物性感染警报',
-    img: './assets/dis-img/60.png'
-  },
-  [DisTypeEnum.BREATHE]: {
-    msg: '呼吸系统感染警报',
-    img: './assets/dis-img/68.png'
-  }
-}
+// const DisMap: any = {
+//   [DisTypeEnum.ANIMAL]: {
+//     msg: '动物性感染警报',
+//     img: './assets/dis-img/60.png'
+//   },
+//   [DisTypeEnum.BREATHE]: {
+//     msg: '呼吸系统感染警报',
+//     img: './assets/dis-img/68.png'
+//   }
+// }
 
 @Component({
   selector: 'app-home',
@@ -34,21 +34,23 @@ export class HomeComponent implements OnInit {
   @ViewChild('map') private map!: MapComponent;
   count = 0;
   search = {};
+  listview: any[] = [];
+  chartOption: any = {data: []};
 
   active = 'environment';
   activeb = '';
   popInfoModal = false;
   popAddModal = false;
   popEnvironmentModal = false;
-  nearData = [{
-    type: DisMap[0],
-    count: 14,
-    data: [{name: '禽流感', n: 5}, {name: '非洲猪瘟', n: 7}]
-  }, {
-    type: DisMap[1],
-    count: 8,
-    data: [{name: '新冠', n: 6}, {name: '流感', n: 1}, {name: '肺炎', n: 1}]
-  }];
+  // nearData = [{
+  //   type: DisMap[0],
+  //   count: 14,
+  //   data: [{name: '禽流感', n: 5}, {name: '非洲猪瘟', n: 7}]
+  // }, {
+  //   type: DisMap[1],
+  //   count: 8,
+  //   data: [{name: '新冠', n: 6}, {name: '流感', n: 1}, {name: '肺炎', n: 1}]
+  // }];
   add = {
     type: '0',
     show1: false,
@@ -70,14 +72,14 @@ export class HomeComponent implements OnInit {
   }
 
   getData() {
-    this.http.getAlerts({
-      // diseases: 'Norovirus;COVID-19',
-      // // dateS: '2020-1-1',
-      // // dateE: '2022-5-28',
-      // // places: 'Michigan, United States;Italy',
-      // sources: 'Google News;Google 资讯'
-    }).subscribe(res => {
+    this.http.getAlerts(this.search).subscribe(res => {
       this.count = res.markers.length;
+      this.listview = res.listview;
+      this.chartOption.data = res.listview.map((d: any) => {
+        return {
+          year: d.date, value: 3
+        }
+      })
       this.map.setData({
         type: "FeatureCollection", features: res.markers.map((data: any) => ({
           type: "Feature",
@@ -105,6 +107,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  deleteAlert(data: any) {
+    this.http.deleteAlert(data.id).subscribe();
+  }
+
   submitForm(): void {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -112,6 +118,9 @@ export class HomeComponent implements OnInit {
     }
     if (this.validateForm.valid) {
       this.isLoading = true;
+      this.http.createAlert({alert: {
+        title: this.validateForm!.get('email')!.value,
+      }}).subscribe()
     }
   }
 

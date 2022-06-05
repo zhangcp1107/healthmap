@@ -13,11 +13,11 @@ import {BackgroundComponent} from './background/background.component';
     RouterModule.forChild([{
       path: '',
       component: BackgroundComponent,
-      children: [
-        {path: '', component: LoginComponent},
-        {path: '**', pathMatch: 'full', redirectTo: ''}
-      ]
-    }])
+      // children: [
+      //   {path: '', component: LoginComponent},
+      //   {path: '**', pathMatch: 'full', redirectTo: ''}
+      // ]
+    }, {path: '**', pathMatch: 'full', redirectTo: ''}])
   ],
   declarations: [
     BackgroundComponent,

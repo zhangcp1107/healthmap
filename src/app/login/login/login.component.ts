@@ -18,7 +18,9 @@ import { GlobalService } from 'src/app/service/global.service';
 export class LoginComponent implements OnInit {
 
   validateForm!: FormGroup;
+  registerForm!: FormGroup;
   isLoading = false;
+  register = false;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -39,9 +41,35 @@ export class LoginComponent implements OnInit {
         user_pwd: this.validateForm!.get('password')!.value
       }).subscribe((res: any) => {
         this.isLoading = false;
-        if (res.code === 200) {
+        if (res.user) {
           // 跳转主页
           this.global.login = true;
+          localStorage.setItem('token', res.user.token)
+          this.router.navigate(['../app'], {
+            relativeTo: this.activateRoute
+          });
+        }
+      });
+    }
+  }
+
+  registerSubmit(): void {
+    for (const i in this.registerForm.controls) {
+      this.registerForm.controls[i].markAsDirty();
+      this.registerForm.controls[i].updateValueAndValidity();
+    }
+    if (this.registerForm.valid) {
+      this.isLoading = true;
+      this.http.register({
+        email: this.registerForm!.get('email')!.value,
+        username: this.registerForm!.get('userName')!.value,
+        password: this.registerForm!.get('password')!.value
+      }).subscribe((res: any) => {
+        this.isLoading = false;
+        if (res.user) {
+          // 跳转主页
+          this.global.login = true;
+          localStorage.setItem('token', res.user.token)
           this.router.navigate(['../app'], {
             relativeTo: this.activateRoute
           });
@@ -52,6 +80,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
+      userName: [window.localStorage.getItem("3ou2io2p5uiddsf3"), [Validators.required]],
+      password: [window.localStorage.getItem("34jgp5uidd345sf3"), [Validators.required]],
+      remember: [window.localStorage.getItem("3ou2io2p5uiddsf3")]
+    });
+    this.registerForm = this.fb.group({
+      email: [window.localStorage.getItem("3ou2io2p5uiddsf3"), [Validators.required]],
       userName: [window.localStorage.getItem("3ou2io2p5uiddsf3"), [Validators.required]],
       password: [window.localStorage.getItem("34jgp5uidd345sf3"), [Validators.required]],
       remember: [window.localStorage.getItem("3ou2io2p5uiddsf3")]

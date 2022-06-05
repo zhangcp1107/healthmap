@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class GlobalService {
 
-  login = false
+  login = !!localStorage.getItem('token')
 
   constructor() { }
 }

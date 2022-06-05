@@ -236,6 +236,8 @@
         & > .body-list {
             background: white;
             min-height: 200px;
+            max-height: 80vh;
+            overflow-y: auto;
         }
     }
 }

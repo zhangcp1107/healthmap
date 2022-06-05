@@ -66,6 +66,7 @@ export class MapComponent implements AfterViewInit {
   }
 
   setData(data: any) {
+    // this.map.removeSource('trees');
     this.map.addSource('trees', {
       'type': 'geojson',
       'data': data

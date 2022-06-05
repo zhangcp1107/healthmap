@@ -6,7 +6,7 @@
     [ngClass]="{active: active=='list'}" (click)="active='list'"
     nz-tooltip nzTooltipTitle="已保存的搜索" nzTooltipPlacement="bottom"></i>
 
-<div class="sh-top-search-info" (click)="active=true">
+<div class="sh-top-search-info" (click)="active='search'">
     <span>{{count}}警报&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <span *ngIf="data.diseases" nz-tooltip [nzTooltipTitle]="data.diseases">
         <span class="info">{{data.diseases}}</span><i nz-icon nzType="caret-down" nzTheme="outline"></i>

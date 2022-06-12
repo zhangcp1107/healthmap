@@ -135,10 +135,10 @@ export class HomeComponent implements OnInit {
       email: ['', [Validators.required]],
       url: ['', [Validators.required]],
       title: [''],
-      loc: [''],
+      plcae_name: [''],
       disease: [[]],
       date: [''],
-      desc: ['']
+      summary: ['']
     });
   }
 

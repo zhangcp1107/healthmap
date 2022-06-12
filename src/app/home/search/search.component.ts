@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpService } from '../http.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-search',
@@ -99,21 +100,14 @@ export class SearchComponent implements OnInit {
       places: this.search.loc.value.join(';'),
       sources: this.search.sou.value.join(';'),
       species: this.search.type.value.join(';'),
-      dateS: this.formatDate(this.search.date.value[0]),
-      dateE: this.formatDate(this.search.date.value[1]),
+      dateS: this.search.date.value[0] ? moment(this.search.date.value[0]).format('YYYY-M-D') : null,
+      dateE: this.search.date.value[1] ? moment(this.search.date.value[1]).format('YYYY-M-D') : null,
     })
   }
 
   clearAll(data: any) {
     data.value = [];
     this.change();
-  }
-
-  formatDate(date: Date) {
-    if (date) {
-      return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`
-    }
-    return ''
   }
 
   ngOnInit(): void {

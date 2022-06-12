@@ -21,6 +21,7 @@
     "@antv/g2": "^4.2.0",
     "@mapbox/mapbox-gl-language": "^1.0.0",
     "mapbox-gl": "^2.7.1",
+    "moment": "^2.29.3",
     "ng-zorro-antd": "^13.1.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

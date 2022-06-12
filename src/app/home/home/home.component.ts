@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
   count = 0;
   search = {};
   listview: any[] = [];
+  diseasesList: any[] = [];
   chartOption: any = {data: []};
 
   active = 'environment';
@@ -69,6 +70,9 @@ export class HomeComponent implements OnInit {
 
   mapInit(e: any) {
     this.getData();
+    this.http.getDiseases().subscribe((res: any) => {
+      this.diseasesList = res.map((d: any) => ({ label: d.disease, value: d.disease }))
+    })
   }
 
   getData() {
@@ -119,8 +123,10 @@ export class HomeComponent implements OnInit {
     if (this.validateForm.valid) {
       this.isLoading = true;
       this.http.createAlert({alert: {
-        title: this.validateForm!.get('email')!.value,
-      }}).subscribe()
+        ...this.validateForm!.getRawValue()
+      }}).subscribe(() => {
+        this.isLoading = false;
+      })
     }
   }
 
@@ -130,7 +136,7 @@ export class HomeComponent implements OnInit {
       url: ['', [Validators.required]],
       title: [''],
       loc: [''],
-      dis: [[]],
+      disease: [[]],
       date: [''],
       desc: ['']
     });

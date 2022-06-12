@@ -309,18 +309,18 @@
         <nz-table #basicTable [nzData]="listview">
             <thead>
                 <tr>
-                    <th>时间</th>
+                    <th width="120px">时间</th>
                     <th>名称</th>
-                    <th>来源</th>
-                    <th>操作</th>
+                    <th width="200px">来源</th>
+                    <th width="100px">操作</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let data of basicTable.data">
-                    <td>{{ data.date }}</td>
+                    <td width="120px">{{ data.date }}</td>
                     <td>{{ data.title }}</td>
-                    <td>{{ data.source }}</td>
-                    <td>
+                    <td width="200px">{{ data.source }}</td>
+                    <td width="100px">
                         <!-- <a>Action 一 {{ data.name }}</a>
                         <nz-divider nzType="vertical"></nz-divider> -->
                         <a (click)="deleteAlert(data)">删除</a>
@@ -379,7 +379,9 @@
                     </nz-form-item>
                     <nz-form-item>
                         <nz-form-control>
-                            <nz-select formControlName="dis" nzPlaceHolder="选择疾病"></nz-select>
+                            <nz-select formControlName="disease" nzPlaceHolder="选择疾病" nzMode="tags">
+                                <nz-option *ngFor="let option of diseasesList" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+                            </nz-select>
                         </nz-form-control>
                     </nz-form-item>
                     <nz-form-item>
@@ -388,7 +390,7 @@
                         </nz-form-control>
                     </nz-form-item>
                     <nz-form-item>
-                        图片<nz-upload
+                        <span class="item-pic">图片</span><nz-upload
                             nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                             [nzHeaders]="{ authorization: 'authorization-text' }"
                             >

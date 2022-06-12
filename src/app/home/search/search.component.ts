@@ -22,31 +22,11 @@ export class SearchComponent implements OnInit {
   option: any = { places: [], diseases: [], sources: [], species: []}
 
   search = {
-    dis: {
-      show: false,
-      type: '0',
-      value: []
-    },
-    loc: {
-      show: false,
-      type: '0',
-      value: []
-    },
-    sou: {
-      show: false,
-      type: '0',
-      value: []
-    },
-    type: {
-      show: false,
-      type: '0',
-      value: []
-    },
-    date: {
-      show: false,
-      type: '0',
-      value: []
-    }
+    dis: { show: false, value: [] },
+    loc: { show: false, value: [] },
+    sou: { show: false, value: [] },
+    type: { show: false, value: [] },
+    date: { show: false, value: [] }
   }
 
   checkType = [
@@ -122,6 +102,11 @@ export class SearchComponent implements OnInit {
       dateS: this.formatDate(this.search.date.value[0]),
       dateE: this.formatDate(this.search.date.value[1]),
     })
+  }
+
+  clearAll(data: any) {
+    data.value = [];
+    this.change();
   }
 
   formatDate(date: Date) {

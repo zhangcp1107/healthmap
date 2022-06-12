@@ -13,16 +13,16 @@ export enum DisTypeEnum {
   BREATHE = 1
 }
 
-// const DisMap: any = {
-//   [DisTypeEnum.ANIMAL]: {
-//     msg: '动物性感染警报',
-//     img: './assets/dis-img/60.png'
-//   },
-//   [DisTypeEnum.BREATHE]: {
-//     msg: '呼吸系统感染警报',
-//     img: './assets/dis-img/68.png'
-//   }
-// }
+const DisMap: any = {
+  [DisTypeEnum.ANIMAL]: {
+    msg: '动物性感染警报',
+    img: './assets/dis-img/60.png'
+  },
+  [DisTypeEnum.BREATHE]: {
+    msg: '呼吸系统感染警报',
+    img: './assets/dis-img/68.png'
+  }
+}
 
 @Component({
   selector: 'app-home',
@@ -42,15 +42,15 @@ export class HomeComponent implements OnInit {
   popInfoModal = false;
   popAddModal = false;
   popEnvironmentModal = false;
-  // nearData = [{
-  //   type: DisMap[0],
-  //   count: 14,
-  //   data: [{name: '禽流感', n: 5}, {name: '非洲猪瘟', n: 7}]
-  // }, {
-  //   type: DisMap[1],
-  //   count: 8,
-  //   data: [{name: '新冠', n: 6}, {name: '流感', n: 1}, {name: '肺炎', n: 1}]
-  // }];
+  nearData = [{
+    type: DisMap[0],
+    count: 14,
+    data: [{name: '禽流感', n: 5}, {name: '非洲猪瘟', n: 7}]
+  }, {
+    type: DisMap[1],
+    count: 8,
+    data: [{name: '新冠', n: 6}, {name: '流感', n: 1}, {name: '肺炎', n: 1}]
+  }];
   add = {
     type: '0',
     show1: false,

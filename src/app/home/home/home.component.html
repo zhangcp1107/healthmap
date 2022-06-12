@@ -4,8 +4,8 @@
     nzTheme="outline" nz-tooltip nzTooltipTitle="地图热度颜色说明" nzTooltipPlacement="bottomRight"></i>
 <i (click)="active='setting'" [ngClass]="{active: active=='setting'}" class="sh-icon-top b" nz-icon nzType="setting"
     nzTheme="outline" nz-tooltip nzTooltipTitle="设置" nzTooltipPlacement="bottom"></i>
-<!-- <i (click)="active='environment'" [ngClass]="{active: active=='environment'}" class="sh-icon-top c" nz-icon
-    nzType="environment" nzTheme="outline" nz-tooltip nzTooltipTitle="附近的疫情" nzTooltipPlacement="bottom"></i> -->
+<i (click)="active='environment'" [ngClass]="{active: active=='environment'}" class="sh-icon-top c" nz-icon
+    nzType="environment" nzTheme="outline" nz-tooltip nzTooltipTitle="附近的疫情" nzTooltipPlacement="bottom"></i>
 
 <i (click)="addAlert($event)" [ngClass]="{active: active=='add'}" class="sh-icon-top
     add" nz-icon nzType="plus-circle" nzTheme="outline" nz-tooltip nzTooltipTitle="添加报警"
@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<!-- <div *ngIf="active=='environment'" class="sh-top-pop-msg">
+<div *ngIf="active=='environment'" class="sh-top-pop-msg">
     <i (click)="active=''" nz-icon nzType="close-circle" nzTheme="outline"></i>
     <div class="head">
         我附近的疫情<i (click)="popEnvironmentModal=true" nz-icon nzType="info-circle" nzTheme="outline"></i>
@@ -73,7 +73,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 <nz-modal nzClassName="sh-pop-environment-modal" (nzOnCancel)="popInfoModal=false" nzWidth="740px" nzCentered="true"
     [(nzVisible)]="popInfoModal" [nzContent]="modalContentInfo" [nzFooter]="modalFooterInfo">

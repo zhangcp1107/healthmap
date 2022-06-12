@@ -1,5 +1,5 @@
 nz-select {
-    width: 560px;
+    width: 380px;
 }
 :host ::ng-deep {
     .sh-icon-top {
@@ -26,8 +26,9 @@ nz-select {
     .sh-top-search-info {
         position: fixed;
         top: 15px;
-        left: 110px;
+        left: 60px;
         font-size: 18px;
+        font-weight: bolder;
         max-width: calc(100vw - 390px);
         cursor: pointer;
         i {
@@ -44,10 +45,11 @@ nz-select {
         }
     }
     .sh-top-pop-search {
-        width: 650px;
+        width: 450px;
         position: fixed;
+        opacity: 0.9;
         top: 50px;
-        left: 104px;
+        left: 60px;
         z-index: 40;
         border-radius: 5px;
         [nztype~=close-circle] {
@@ -74,7 +76,7 @@ nz-select {
             font-style: normal;
             .t1, .t2 {
                 display: inline-block;
-                width: 50%;
+                width: 100%;
                 padding: 7px;
                 text-align: center;
                 &.active {
@@ -105,6 +107,9 @@ nz-select {
                 i {
                     float: right;
                 }
+            }
+            label {
+                pointer-events: none;
             }
             .item-body {
                 padding: 15px 20px;

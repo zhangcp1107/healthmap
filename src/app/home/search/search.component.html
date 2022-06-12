@@ -2,9 +2,9 @@
     [ngClass]="{active: active=='search'}" (click)="active='search'"
     nz-tooltip nzTooltipTitle="搜索" nzTooltipPlacement="bottomLeft"></i>
 
-<i nz-icon nzType="folder-open" nzTheme="fill" class="sh-icon-top folder"
+<!-- <i nz-icon nzType="folder-open" nzTheme="fill" class="sh-icon-top folder"
     [ngClass]="{active: active=='list'}" (click)="active='list'"
-    nz-tooltip nzTooltipTitle="已保存的搜索" nzTooltipPlacement="bottom"></i>
+    nz-tooltip nzTooltipTitle="已保存的搜索" nzTooltipPlacement="bottom"></i> -->
 
 <div class="sh-top-search-info" (click)="active='search'">
     <span>{{count}}警报&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -32,10 +32,10 @@
             <i nz-icon nzType="search" nzTheme="outline" class=""></i>
             搜索
         </div>
-        <div class="t2" [ngClass]="{active: active=='list'}" (click)="active='list'">
+        <!-- <div class="t2" [ngClass]="{active: active=='list'}" (click)="active='list'">
             <i nz-icon nzType="folder-open" nzTheme="fill" class=""></i>
             已经保存到搜索
-        </div>
+        </div> -->
     </div>
     <div class="body" *ngIf="active=='search'">
         <div class="type">
@@ -43,47 +43,39 @@
         </div>
         <div class="title" (click)="search.dis.show = !search.dis.show">疾病<i nz-icon nzType="caret-down" nzTheme="outline"></i></div>
         <div *ngIf="search.dis.show" class="item-body">
-            <nz-radio-group [(ngModel)]="search.dis.type">
-                <label nz-radio nzValue="0">所有疾病</label><br/>
-                <label nz-radio nzValue="B">
-                    <nz-select [(ngModel)]="search.dis.value" (ngModelChange)="change()" nzMode="tags" nzPlaceHolder="选择疾病">
-                        <nz-option *ngFor="let option of option.diseases" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
-                    </nz-select>
-                </label>
-            </nz-radio-group>
+            <label nz-radio [ngModel]="!search.dis.value || !search.dis.value.length"></label>
+            <span (click)="clearAll(search.dis)">所有疾病</span><br/>
+            <label nz-radio [ngModel]="search.dis.value && search.dis.value.length>0"></label>
+            <nz-select [(ngModel)]="search.dis.value" (ngModelChange)="change()" nzMode="tags" nzPlaceHolder="选择疾病">
+                <nz-option *ngFor="let option of option.diseases" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+            </nz-select>
         </div>
         <div class="title" (click)="search.loc.show = !search.loc.show">位置<i nz-icon nzType="caret-down" nzTheme="outline"></i></div>
         <div *ngIf="search.loc.show" class="item-body">
-            <nz-radio-group [(ngModel)]="search.loc.type">
-                <label nz-radio nzValue="0">所有地点</label><br/>
-                <label nz-radio nzValue="B">
-                    <nz-select [(ngModel)]="search.loc.value" (ngModelChange)="change()" nzMode="tags" nzPlaceHolder="选择地点">
-                        <nz-option *ngFor="let option of option.places" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
-                    </nz-select>
-                </label>
-            </nz-radio-group>
+            <label nz-radio [ngModel]="!search.loc.value || !search.loc.value.length"></label>
+            <span (click)="clearAll(search.loc)">所有地点</span><br/>
+            <label nz-radio [ngModel]="search.loc.value && search.loc.value.length>0"></label>
+            <nz-select [(ngModel)]="search.loc.value" (ngModelChange)="change()" nzMode="tags" nzPlaceHolder="选择地点">
+                <nz-option *ngFor="let option of option.places" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+            </nz-select>
         </div>
         <div class="title" (click)="search.sou.show = !search.sou.show">来源<i nz-icon nzType="caret-down" nzTheme="outline"></i></div>
         <div *ngIf="search.sou.show" class="item-body">
-            <nz-radio-group [(ngModel)]="search.sou.type">
-                <label nz-radio nzValue="0">所有来源</label><br/>
-                <label nz-radio nzValue="B">
-                    <nz-select [(ngModel)]="search.sou.value" (ngModelChange)="change()" nzMode="tags" nzPlaceHolder="选择地点">
-                        <nz-option *ngFor="let option of option.sources" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
-                    </nz-select>
-                </label>
-            </nz-radio-group>
+            <label nz-radio [ngModel]="!search.sou.value || !search.sou.value.length"></label>
+            <span (click)="clearAll(search.sou)">所有来源</span><br/>
+            <label nz-radio [ngModel]="search.sou.value && search.sou.value.length>0"></label>
+            <nz-select [(ngModel)]="search.sou.value" (ngModelChange)="change()" nzMode="tags" nzPlaceHolder="选择来源">
+                <nz-option *ngFor="let option of option.sources" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+            </nz-select>
         </div>
-        <div class="title" (click)="search.type.show = !search.type.show">种类<i nz-icon nzType="caret-down" nzTheme="outline"></i></div>
+        <div class="title" (click)="search.type.show = !search.type.show">物种<i nz-icon nzType="caret-down" nzTheme="outline"></i></div>
         <div *ngIf="search.type.show" class="item-body">
-            <nz-radio-group [(ngModel)]="search.type.type">
-                <label nz-radio nzValue="0">所有物种</label><br/>
-                <label nz-radio nzValue="B">
-                    <nz-select [(ngModel)]="search.type.value" (ngModelChange)="change()" nzMode="tags" nzPlaceHolder="选择地点">
-                        <nz-option *ngFor="let option of option.species" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
-                    </nz-select>
-                </label>
-            </nz-radio-group>
+            <label nz-radio [ngModel]="!search.type.value || !search.type.value.length"></label>
+            <span (click)="clearAll(search.type)">所有物种</span><br/>
+            <label nz-radio [ngModel]="search.type.value && search.type.value.length>0"></label>
+            <nz-select [(ngModel)]="search.type.value" (ngModelChange)="change()" nzMode="tags" nzPlaceHolder="选择物种">
+                <nz-option *ngFor="let option of option.species" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+            </nz-select>
         </div>
         <div class="title" (click)="search.date.show = !search.date.show">日期<i nz-icon nzType="caret-down" nzTheme="outline"></i></div>
         <div *ngIf="search.date.show" class="item-body">

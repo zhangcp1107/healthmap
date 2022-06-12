@@ -16,6 +16,8 @@ mapboxgl.setRTLTextPlugin(
 export class MapComponent implements AfterViewInit {
 
   private map!: Map;
+  private keyName = '';
+  private mapEvent!: any;
 
   @ViewChild('chart') mapElRef!: ElementRef;
   @ViewChild('popupMsg') popupMsgElRef!: ElementRef;
@@ -49,34 +51,26 @@ export class MapComponent implements AfterViewInit {
     this.map.on('load', () => {
       this.initEvent.emit({map: this.map})
     });
-    // click on tree to view dbh in a popup
-    this.map.on('click', ['trees-heat','trees-point'], (event: any) => {
-      this.activeData.title = event.features[0].properties.place_name;
-      this.activeData.html = event.features[0].properties.html;
-      this.activeData.dataList = event.features.reduce((p: [], c: any) => [...p, ...(JSON.parse(c.properties.list) || [])], []);
-      this.activeData.event = event;
-      new mapboxgl.Popup({
-        // closeButton: false,
-        className: 'sh-map-pop-msg'
-      })
-        .setLngLat(event.features[0].geometry.coordinates)
-        .setDOMContent(this.popupMsgElRef.nativeElement)
-        .addTo(this.map);
-    });
   }
 
   setData(data: any) {
-    // this.map.removeSource('trees');
-    this.map.addSource('trees', {
+    if (this.keyName) {
+      this.map.removeSource(this.keyName);
+      this.map.removeLayer(this.keyName + '-heat');
+      this.map.removeLayer(this.keyName + '-point');
+      this.map.off('click', this.mapEvent);
+    }
+    this.keyName = 'sdata'+(new Date).getTime();
+    this.map.addSource(this.keyName, {
       'type': 'geojson',
       'data': data
     });
     
     this.map.addLayer(
       {
-        'id': 'trees-heat',
+        'id': this.keyName + '-heat',
         'type': 'heatmap',
-        'source': 'trees',
+        'source': this.keyName,
         'maxzoom': 15,
         'paint': {
           // increase weight as diameter breast height increases
@@ -133,9 +127,9 @@ export class MapComponent implements AfterViewInit {
 
     this.map.addLayer(
       {
-        'id': 'trees-point',
+        'id': this.keyName + '-point',
         'type': 'circle',
-        'source': 'trees',
+        'source': this.keyName,
         'minzoom': 14,
         'paint': {
           // increase the radius of the circle as the zoom level and dbh value increases
@@ -173,5 +167,19 @@ export class MapComponent implements AfterViewInit {
       },
       'waterway-label'
     );
+    // click on tree to view dbh in a popup
+    this.mapEvent = this.map.on('click', [this.keyName + '-heat', this.keyName + '-point'], (event: any) => {
+      this.activeData.title = event.features[0].properties.place_name;
+      this.activeData.html = event.features[0].properties.html;
+      this.activeData.dataList = event.features.reduce((p: [], c: any) => [...p, ...(JSON.parse(c.properties.list) || [])], []);
+      this.activeData.event = event;
+      new mapboxgl.Popup({
+        // closeButton: false,
+        className: 'sh-map-pop-msg'
+      })
+        .setLngLat(event.features[0].geometry.coordinates)
+        .setDOMContent(this.popupMsgElRef.nativeElement)
+        .addTo(this.map);
+    });
   }
 }

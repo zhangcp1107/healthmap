@@ -6,22 +6,16 @@ import { GlobalService } from 'src/app/service/global.service';
 import { MapComponent } from 'src/shared/map/map/map.component';
 import { HttpService } from '../http.service';
 
-export enum DisTypeEnum {
-  /** @desc 动物 */
-  ANIMAL = 0,
-  /** @desc 呼吸 */
-  BREATHE = 1
-}
+// export enum DisTypeEnum {
+//   /** @desc 动物 */
+//   ANIMAL = 0,
+//   /** @desc 呼吸 */
+//   BREATHE = 1
+// }
 
 const DisMap: any = {
-  [DisTypeEnum.ANIMAL]: {
-    msg: '动物性感染警报',
-    img: './assets/dis-img/60.png'
-  },
-  [DisTypeEnum.BREATHE]: {
-    msg: '呼吸系统感染警报',
-    img: './assets/dis-img/68.png'
-  }
+  ['动物健康威胁']: './assets/dis-img/60.png',
+  ['人类健康威胁']: './assets/dis-img/68.png'
 }
 
 @Component({
@@ -34,6 +28,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('map') private map!: MapComponent;
   count = 0;
   search = {};
+  listdata: any[] = [];
   listview: any[] = [];
   diseasesList: any[] = [];
   chartOption: any = {data: []};
@@ -43,22 +38,14 @@ export class HomeComponent implements OnInit {
   popInfoModal = false;
   popAddModal = false;
   popEnvironmentModal = false;
-  nearData = [{
-    type: DisMap[0],
-    count: 14,
-    data: [{name: '禽流感', n: 5}, {name: '非洲猪瘟', n: 7}]
-  }, {
-    type: DisMap[1],
-    count: 8,
-    data: [{name: '新冠', n: 6}, {name: '流感', n: 1}, {name: '肺炎', n: 1}]
-  }];
+  nearData: any[] = [];
   add = {
     type: '0',
     show1: false,
     show2: false
   }
   validateForm!: FormGroup;
-  isLoading = false;
+  isLoading = true;
 
   constructor(
     private router: Router,
@@ -76,10 +63,56 @@ export class HomeComponent implements OnInit {
   }
 
   getData() {
+    this.isLoading = true;
     this.http.getAlerts(this.search).subscribe(res => {
       this.count = res.markers.length;
-      this.listview = res.listview;
+      this.listdata = res.listview;
       this.chartOption.data = res.listview.map((d: any) => {
+        if (d.disease_classification) {
+          const cf = d.disease_classification;
+          let near: any = this.nearData.find((n: any) => n.name == cf.specie);
+          if (near) {
+            let level = near.data.find((n: any) => n.name == cf.level)
+            if (level) {
+              let name = level.data.find((n: any) => n.name == cf.chinese)
+              if (name) {
+                name.data.push(d)
+              } else {
+                level.data.push({
+                  name: cf.chinese,
+                  family: cf.family,
+                  english: cf.english,
+                  data: [d]
+                })
+              }
+            } else {
+              near.data.push({
+                name: cf.level,
+                data: [{
+                  name: cf.chinese,
+                  family: cf.family,
+                  english: cf.english,
+                  data: [d]
+                }]
+              })
+            }
+          } else {
+            near = {
+              name: cf.specie,
+              icon: DisMap[cf.specie],
+              data: [{
+                name: cf.level,
+                data: [{
+                  name: cf.chinese,
+                  family: cf.family,
+                  english: cf.english,
+                  data: [d]
+                }]
+              }]
+            }
+            this.nearData.push(near)
+          }
+        }
         return {
           year: d.date, value: 3
         }
@@ -98,6 +131,7 @@ export class HomeComponent implements OnInit {
           geometry: { type: "Point", coordinates: [data.lon, data.lat] }
         }))
       })
+      this.isLoading = false;
     })
   }
 
@@ -142,4 +176,43 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  getSum1(data: any[]) {
+    return data.reduce((s, d) => (s+d.data.length),0)
+  }
+
+  getSum2(data: any[]) {
+    return data.reduce((s, d) => (s+this.getSum1(d.data)),0)
+  }
+
+  list1(data: any[]) {
+    const list = data.reduce((s, d) => {
+      s.push(...(d.data as any[]).reduce((s1, d1) => {
+        s1.push(...d1.data)
+        return s1;
+      }, []))
+      return s;
+    }, [])
+    this.listview = list;
+    this.activeb='list';
+  }
+
+  list2(data: any[]) {
+    const list = data.reduce((s, d) => {
+      s.push(...d.data);
+      return s;
+    }, [])
+    this.listview = list;
+    this.activeb='list';
+  }
+
+  list3(data: any[]) {
+    const list = data;
+    this.listview = list;
+    this.activeb='list';
+  }
+
+  showList() {
+    this.listview = this.listdata;
+    this.activeb='list';
+  }
 }

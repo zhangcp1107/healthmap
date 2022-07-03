@@ -34,7 +34,7 @@ export class MapComponent implements AfterViewInit {
       style: 'mapbox://styles/mapbox/streets-v11',
       zoom: 2,
       // center: [116.0259, 39.9010],
-      center: [121.5, 31.3],
+      center: [119.5, 30],
     });
     // map.addControl(new mapboxgl.NavigationControl());
     this.map.addControl(new MapboxLanguage({

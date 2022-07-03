@@ -192,7 +192,7 @@ export class HomeComponent implements OnInit {
       }, []))
       return s;
     }, [])
-    this.listview = list;
+    this.listview = list.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
     this.activeb='list';
   }
 
@@ -201,18 +201,18 @@ export class HomeComponent implements OnInit {
       s.push(...d.data);
       return s;
     }, [])
-    this.listview = list;
+    this.listview = list.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
     this.activeb='list';
   }
 
   list3(data: any[]) {
-    const list = data;
-    this.listview = list;
+    const list: any = data;
+    this.listview = list.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
     this.activeb='list';
   }
 
   showList() {
-    this.listview = this.listdata;
+    this.listview = (this.listdata as any).sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
     this.activeb='list';
   }
 }

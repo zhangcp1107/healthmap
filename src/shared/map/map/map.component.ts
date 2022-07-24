@@ -172,6 +172,7 @@ export class MapComponent implements AfterViewInit {
       this.activeData.title = event.features[0].properties.place_name;
       this.activeData.html = event.features[0].properties.html;
       this.activeData.dataList = event.features.reduce((p: [], c: any) => [...p, ...(JSON.parse(c.properties.list) || [])], []);
+      this.activeData.dataList = this.activeData.dataList.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
       this.activeData.event = event;
       new mapboxgl.Popup({
         // closeButton: false,

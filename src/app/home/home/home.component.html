@@ -305,7 +305,9 @@
 
 <div *ngIf="activeb=='chart'" class="sh-bottom-pop-msg">
     <i (click)="activeb=''" nz-icon nzType="double-right" nzTheme="outline"></i>
-    <div class="head"></div>
+    <div class="head">
+        <i (click)="activeb='list'" nz-icon nzType="unordered-list" nzTheme="outline"></i>
+    </div>
     <div class="body-chart">
         <sh-chart [option]="chartOption"></sh-chart>
     </div>
@@ -314,6 +316,7 @@
 <div *ngIf="activeb=='list'" class="sh-bottom-pop-msg">
     <i (click)="activeb=''" nz-icon nzType="double-right" nzTheme="outline"></i>
     <div class="head">
+        <i (click)="activeb='chart'" nz-icon nzType="line-chart" nzTheme="outline"></i>
     </div>
     <div class="body-list">
         <nz-table #basicTable [nzData]="listview">

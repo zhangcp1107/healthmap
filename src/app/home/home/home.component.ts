@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
       this.setDataAndChart(this.listdata);
       res.listview.forEach((d: any) => {
         if (d.disease_classification) {
-          const cf = d.disease_classification;
+          const cf = d.disease_classification||{};
           let near: any = this.nearData.find((n: any) => n.name == cf.specie);
           if (near) {
             let level = near.data.find((n: any) => n.name == cf.level)

@@ -5,7 +5,7 @@
 <i (click)="active='setting'" [ngClass]="{active: active=='setting'}" class="sh-icon-top b" nz-icon nzType="setting"
     nzTheme="outline" nz-tooltip nzTooltipTitle="设置" nzTooltipPlacement="bottom"></i>
 <i (click)="active='environment'" [ngClass]="{active: active=='environment'}" class="sh-icon-top c" nz-icon
-    nzType="environment" nzTheme="outline" nz-tooltip nzTooltipTitle="附近的疫情" nzTooltipPlacement="bottom"></i>
+    nzType="environment" nzTheme="outline" nz-tooltip nzTooltipTitle="分类统计" nzTooltipPlacement="bottom"></i>
 
 <i (click)="addAlert($event)" [ngClass]="{active: active=='add'}" class="sh-icon-top
     add" nz-icon nzType="plus-circle" nzTheme="outline" nz-tooltip nzTooltipTitle="添加报警"
@@ -56,7 +56,7 @@
 <div *ngIf="active=='environment' && !isLoading" class="sh-top-pop-msg">
     <i (click)="active=''" nz-icon nzType="close-circle" nzTheme="outline"></i>
     <div class="head">
-        附近的疫情
+        分类统计
         <i (click)="popEnvironmentModal=true" nz-icon nzType="info-circle" nzTheme="outline"></i>
     </div>
     <div class="body-environment">
@@ -134,10 +134,10 @@
                             style="vertical-align: inherit;">大多数类别是指疾病影响您身体的部位，例如霍乱的胃肠道疾病或肺炎的呼吸系统疾病。</span><span
                             style="vertical-align: inherit;">我们还跟踪环境风险（即由于污水导致海滩关闭）和动物疾病（即发现狂犬病的狐狸），为您提供您所在地区疾病的更广泛了解。</span></span>
                 </p>
-                <p><span style="vertical-align: inherit;"><span
+                <!-- <p><span style="vertical-align: inherit;"><span
                             style="vertical-align: inherit;">每个类别中的警报数量决定了它们在“我附近的爆发”部分中出现的顺序。</span><span
                             style="vertical-align: inherit;">警报数量最多的类别首先出现。</span><span
-                            style="vertical-align: inherit;">不会显示您所在地区没有警报的类别。</span></span></p>
+                            style="vertical-align: inherit;">不会显示您所在地区没有警报的类别。</span></span></p> -->
                 <div class="dis_cat_popup">
                     <div class="dis_icon">
                         <img src="./assets/dis-img/60.png" alt="动物警报">

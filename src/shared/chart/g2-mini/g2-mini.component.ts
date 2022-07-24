@@ -6,7 +6,8 @@ import { Chart } from '@antv/g2';
   templateUrl: './g2-mini.component.html',
   styleUrls: ['./g2-mini.component.scss']
 })
-export class G2MiniComponent implements AfterViewInit {
+export class G2MiniComponent {
+  chart: any;
   option: any = {
     chartType: '迷你柱状图', // '迷你折线图'
     chartXY: 'index*value',
@@ -14,6 +15,7 @@ export class G2MiniComponent implements AfterViewInit {
   };
   @Input('option')
   set option_(value: any) {
+    this.chart&&this.chart.destroy();
     this.option = Object.assign(this.option, value);
     this.option.data&&this.initChart();
   }
@@ -21,18 +23,18 @@ export class G2MiniComponent implements AfterViewInit {
   @ViewChild('chart') ele!: ElementRef;
 
   ngAfterViewInit(): void {
-    this.initChart();
+    this.ele&&this.initChart();
   }
 
   initChart() {
-    let chart = new Chart({
+    this.chart = new Chart({
       container: this.ele.nativeElement,
       autoFit: true,
       height: 300,
       padding: [5, 30, 50, 50]
     });
-    chart.data(this.option.data);
-    chart.scale({
+    this.chart.data(this.option.data);
+    this.chart.scale({
       year: {
         range: [0, 1],
       },
@@ -42,14 +44,14 @@ export class G2MiniComponent implements AfterViewInit {
       },
     });
 
-    chart.tooltip({
+    this.chart.tooltip({
       showCrosshairs: true, // 展示 Tooltip 辅助线
       shared: true,
     });
 
-    chart.line().position('year*value').label('value');
-    chart.point().position('year*value');
+    this.chart.line().position('year*value').label('value');
+    this.chart.point().position('year*value');
 
-    chart.render();
+    this.chart.render();
   }
 }

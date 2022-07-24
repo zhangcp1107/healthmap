@@ -65,9 +65,10 @@ export class HomeComponent implements OnInit {
   getData() {
     this.isLoading = true;
     this.http.getAlerts(this.search).subscribe(res => {
-      this.count = res.markers.length;
+      this.count = res.numalerts;
       this.listdata = res.listview;
-      this.chartOption.data = res.listview.map((d: any) => {
+      this.setDataAndChart(this.listdata);
+      res.listview.forEach((d: any) => {
         if (d.disease_classification) {
           const cf = d.disease_classification;
           let near: any = this.nearData.find((n: any) => n.name == cf.specie);
@@ -113,9 +114,6 @@ export class HomeComponent implements OnInit {
             this.nearData.push(near)
           }
         }
-        return {
-          year: d.date, value: 3
-        }
       })
       this.map.setData({
         type: "FeatureCollection", features: res.markers.map((data: any) => ({
@@ -133,6 +131,23 @@ export class HomeComponent implements OnInit {
       })
       this.isLoading = false;
     })
+  }
+
+  setDataAndChart(list: any[]) {
+    this.listview = list.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    this.chartOption = {
+      data: this.listview.map(d => ({
+        year: d.date, value: 1
+      })).reduce((s: any[],c,p) => {
+        const d = s.find((i: any) => i.year==c.year)
+        if (d) {
+          d.value = d.value+c.value;
+        } else {
+          s.push(c)
+        }
+        return s
+      },[])
+    }
   }
 
   addAlert(e: any) {
@@ -192,7 +207,7 @@ export class HomeComponent implements OnInit {
       }, []))
       return s;
     }, [])
-    this.listview = list.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    this.setDataAndChart(list);
     this.activeb='list';
   }
 
@@ -201,18 +216,23 @@ export class HomeComponent implements OnInit {
       s.push(...d.data);
       return s;
     }, [])
-    this.listview = list.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    this.setDataAndChart(list);
     this.activeb='list';
   }
 
   list3(data: any[]) {
     const list: any = data;
-    this.listview = list.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    this.setDataAndChart(list);
     this.activeb='list';
   }
 
   showList() {
-    this.listview = (this.listdata as any).sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    this.setDataAndChart(this.listdata);
     this.activeb='list';
+  }
+
+  showChart() {
+    this.setDataAndChart(this.listdata);
+    this.activeb='chart'
   }
 }

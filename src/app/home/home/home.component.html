@@ -298,7 +298,7 @@
     <ng-template #modalFooter></ng-template>
 </nz-modal>
 
-<i (click)="activeb='chart'" [ngClass]="{active: activeb=='chart'}" class="sh-icon-top chart" nz-icon
+<i (click)="showChart()" [ngClass]="{active: activeb=='chart'}" class="sh-icon-top chart" nz-icon
     nzType="line-chart" nzTheme="outline" nz-tooltip nzTooltipTitle="时间序列" nzTooltipPlacement="bottom"></i>
 <i (click)="showList()" [ngClass]="{active: activeb=='list'}" class="sh-icon-top list" nz-icon
     nzType="unordered-list" nzTheme="outline" nz-tooltip nzTooltipTitle="列表视图" nzTooltipPlacement="bottom"></i>
